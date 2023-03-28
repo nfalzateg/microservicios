@@ -1,0 +1,5 @@
+package com.co.uniquindio.microservicios.controller;
+
+public class AuthController {
+
+}

@@ -1,0 +1,15 @@
+Feature: The Pay API provide to user the function for register pay in the application
+  Scenario Outline:: Yo como usuario registrado quiero pagar una compra
+    Given Soy un usuario con un token valido
+    When invoco el servicio de crear pago
+    And usando el metodo de pago <medio-pago>
+    And usando la referencia compra <ref-compra>
+    Then obtengo un status code 201
+    And voucher de verificacion
+    Examples:
+    | medio-pago | ref-compra    |
+    | 1          | JKasaihsLDSO7 |
+    | 2          | JKasaihsLDSO8 |
+    | 3          | JKasaihsLDSO9 |
+    
+    

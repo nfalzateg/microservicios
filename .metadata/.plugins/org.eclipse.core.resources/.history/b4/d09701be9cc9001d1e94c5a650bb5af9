@@ -1,0 +1,8 @@
+Feature: The Pay API provide to user the function for register pay in the application
+  Scenario: Yo como usuario registrado quiero pagar uno o mas productos
+    Given Soy un usuario con un token valido
+    And metodo de pago valido 
+    And compra para pagar
+    When invoco el servicio de crear pago
+    Then obtengo un status code 201
+    And voucher de verificacion

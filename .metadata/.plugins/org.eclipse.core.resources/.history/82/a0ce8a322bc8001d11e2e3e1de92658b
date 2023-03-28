@@ -1,0 +1,28 @@
+package com.co.uniquindio.microservicios.controller;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping(path="/pago")
+public class PagoController {
+	
+	@PostMapping
+	public Response add(@RequestBody Pago val) {
+		
+		if(val!= null) {
+			return Response.created(uri)
+	                .entity(token).header("Authorization","Bearer "+token.getToken()).build() ;
+		}
+		else {
+			throw new WebApplicationException("Nombre de usuario o clave incorrectas.", Response.Status.UNAUTHORIZED);
+		}
+		//val.setEstadoId(2);
+		//val.setVoucherId("UHIAUSD8966asdD");
+		
+		//return val;
+	}
+
+}

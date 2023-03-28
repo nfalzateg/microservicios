@@ -1,0 +1,37 @@
+package co.edu.uniquindio.ingesis.microprofile.ejemplo.test.steps;
+
+import co.edu.uniquindio.ingesis.microprofile.ejemplo.test.dtos.ErrorDTO;
+import co.edu.uniquindio.ingesis.microprofile.ejemplo.test.dtos.LoginDTO;
+import co.edu.uniquindio.ingesis.microprofile.ejemplo.test.dtos.TokenDTO;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+
+import static io.restassured.RestAssured.baseURI;
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.hasItems;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class CrearPagoSteps {
+  @Given("^you are in Given annotation$")
+  public void given() throws Throwable {
+  }
+
+  @When("^you are in When annotation$")
+  public void when() throws Throwable {
+  }
+
+  @Then("^you are in Then annotation$")
+  public void then() throws Throwable {
+  }
+
+  @And("^you are in And annotation$")
+  public void and() throws Throwable {
+  }
+
+}

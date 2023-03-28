@@ -1,0 +1,65 @@
+package co.edu.uniquindio.ingesis.microprofile.ejemplo.test.steps;
+
+import static io.restassured.RestAssured.baseURI;
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import co.edu.uniquindio.ingesis.microprofile.ejemplo.test.dtos.PagoDTO;
+import co.edu.uniquindio.ingesis.microprofile.ejemplo.test.dtos.TokenDTO;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+
+public class CrearPagoSteps {
+
+	private static final String BASE_URL = "http://localhost:8080/pago";
+	private Response response;
+	private PagoDTO pagoDTO;
+	private PagoDTO pagoDTOResponse;
+
+	@Given("Soy un usuario con un token valido")
+	public void soyUnUsuarioConUnTokenValido() throws Throwable {
+		
+		pagoDTO = PagoDTO.builder().clienteId("5602").metodoPagoId("1").monto(50000.00).refVenta("JKasaihsLDSO7").build();
+	}
+
+	@And("metodo de pago valido")
+	public void metodoDePagoValido() throws Throwable {
+		
+		assertTrue(pagoDTO.getMetodoPagoId().equals("1"));
+	}
+
+	@And("compra para pagar")
+	public void compraParaPagar() throws Throwable {
+		assertTrue(pagoDTO.getRefVenta().equals("JKasaihsLDSO7"));
+	}
+
+	@When("invoco el servicio de crear pago")
+	public void invocoElServicioDeCrearPago() throws Throwable {
+		baseURI = BASE_URL;
+		response = given().contentType(ContentType.JSON).body(pagoDTO).when().post();
+	}
+
+	@Then("obtengo un status code {int}")
+	public void obtengoUnStatusCode(int status) {
+		response.then().statusCode(status);
+	}
+
+	@And("voucher de verificacion")
+	public void voucherDeVerificacion() throws Throwable {
+		pagoDTOResponse = response.then()
+                .body("voucherId",response->notNullValue())
+                .and()
+                .extract().body().as(PagoDTO.class);
+		
+        //assertNotNull(pagoDTOResponse);
+        assertTrue(pagoDTOResponse.getVoucherId().equals("UHIAUSD8966asdD"));
+        
+	}
+
+}
