@@ -1,4 +1,0 @@
-Feature: Realizar pago en linea
-	Como usuario, quiero poder realizar el pago de un producto en linea
-	
-Scenario: Pago exitoso
