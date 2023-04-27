@@ -40,8 +40,8 @@ public class CrearPagoSteps {
 		response = given().contentType(ContentType.JSON).body(pagoDTO).when().post();
 	}
 	
-	@When("usando el metodo de pago {string}")
-	public void usandoElMetodoDePago(String metodoPago) throws Throwable {
+	@When("usando el metodo de pago {int}")
+	public void usandoElMetodoDePago(int metodoPago) throws Throwable {
 		pagoDTO.setMetodoPagoId(metodoPago);
 		
 	}

@@ -1,9 +1,10 @@
 package co.edu.uniquindio.ingesis.microservicios.test.dtos;
 
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
@@ -11,8 +12,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public @Data class PagoDTO {
 	
-	private String clienteId;
-	private String metodoPagoId;
+	private Integer id;
+	private Date fecha;
+	private Integer clienteId;
+	private Integer metodoPagoId;
 	private Double monto;
 	private String refVenta;
 	private Integer estadoId;
