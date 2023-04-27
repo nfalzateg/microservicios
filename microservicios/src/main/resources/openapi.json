@@ -1,0 +1,98 @@
+{
+	"openapi": "3.0.1",
+	"info": {
+		"title": "Pago",
+		"version": "1.0.0"
+	},
+	"servers": [
+		{
+			"url": "http://localhost:8080/",
+			"description": "Servidor de desarrollo."
+		}
+	],
+	"paths": {
+		"/pago": {
+			"post": {
+				"requestBody": {
+					"description": "Se envia el pago",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Pago"
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Pago"
+								}
+							}
+						},
+						"description": "La respuesta 201 indica que se ha creado el pago con éxito."
+					},
+					"422": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"codigoError": {
+											"type": "string"
+										},
+										"mensajeError": {
+											"type": "string"
+										}
+									},
+									"example": {
+										"codigoError": "CRP_422",
+										"mensajeError": "Error en el cuerpo de la solicitud"
+									}
+								}
+							}
+						},
+						"description": "Se responde con código 422 en caso de que un parámetro esté mal definido"
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"Pago": {
+				"type": "object",
+				"properties": {
+					"clienteId": {
+						"type": "string"
+					},
+					"metodoPagoId": {
+						"type": "string"
+					},
+					"monto": {
+						"type": "number",
+						"format": "double"
+					},
+					"refVenta": {
+						"type": "string"
+					},
+					"estadoId": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"voucherId": {
+						"type": "string"
+					}
+				},
+				"example": {
+					"clienteId": 5602,
+					"metodoPagoId": 1,
+					"monto": 50000.00,
+					"refVenta": "JKasaihsLDSO7"
+				}
+			}
+		}
+	}
+}

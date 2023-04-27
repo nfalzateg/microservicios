@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.co.uniquindio.microservicios.entities.Pago;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping(path = "/pago")
+@Tag(name = "PagoController", description = "API para manejo de pagos")
 public class PagoController {
 
 	@PostMapping
@@ -33,12 +36,8 @@ public class PagoController {
 			return ResponseEntity.status(HttpStatus.CREATED).body(pago);
 			
 		}
-		else {
-			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body("Error en el cuerpo de la solicitud");
-		}
 		
-		 
-		 
+		return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body("Error en el cuerpo de la solicitud");	 
 		 
 	}
 	
