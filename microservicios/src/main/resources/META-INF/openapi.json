@@ -58,6 +58,55 @@
 					}
 				}
 			}
+		},
+		"/pago/{id}": {
+			"get": {
+				"description": "Retorna la información del pago correspondiente al ID indicado.",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"description": "ID del pago a consultar",
+						"schema": {
+							"type": "integer"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Pago"
+								}
+							}
+						},
+						"description": "La respuesta 200 indica que si existe el registro."
+					},
+					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"codigoError": {
+											"type": "string"
+										},
+										"mensajeError": {
+											"type": "string"
+										},
+										"resultado": {
+											"type": "string"
+										}
+									}
+								}
+							}
+						},
+						"description": "Se responde con código 404 en caso de que no se encuentre el pago"
+					}
+				}
+			}
 		}
 	},
 	"components": {
@@ -86,7 +135,9 @@
 						"type": "string"
 					}
 				},
-				"requeried":[""],
+				"requeried": [
+					""
+				],
 				"example": {
 					"clienteId": 5602,
 					"metodoPagoId": 1,

@@ -22,14 +22,14 @@ public class CrearPagoSteps {
 	private Response response;
 	private PagoDTO pagoDTO = new PagoDTO();
 	private PagoDTO pagoDTOResponse;
-	private ArrayList<String> refVentas = new ArrayList<>();
+	//private ArrayList<String> refVentas = new ArrayList<>();
 
 	@Given("Soy un usuario con un token valido")
 	public void soyUnUsuarioConUnTokenValido() throws Throwable {
 		
 		
 		
-		//pagoDTO = PagoDTO.builder().clienteId("5602").metodoPagoId("3").monto(50000.00).refVenta("JKasaihsLDSO7").build();
+		pagoDTO = PagoDTO.builder().clienteId(5602).monto(10000.00).build();
 	}
 
 	@And("invoco el servicio de crear pago")
@@ -63,6 +63,7 @@ public class CrearPagoSteps {
                 .body("voucherId",response->notNullValue())
                 .and()
                 .extract().body().as(PagoDTO.class);
+		
 		
         assertNotNull(pagoDTOResponse);
         //assertTrue(pagoDTOResponse.getVoucherId().equals("UHIAUSD8966asdD"));
